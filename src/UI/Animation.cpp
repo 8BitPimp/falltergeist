@@ -22,6 +22,7 @@
 
 // C++ standard includes
 #include <cmath>
+#include <malloc.h>
 
 // Falltergeist includes
 #include "../Base/StlFeatures.h"
@@ -108,8 +109,8 @@ Animation::Animation(const std::string& frmName, unsigned int direction) : Fallt
         {
             for (auto i=0; i<5; i++)
             {
-                unsigned int mask[frm->width() * frm->height()];
-
+                const size_t alloc_size = frm->width() * frm->height() * sizeof(unsigned int);
+                unsigned int* mask = (unsigned int*)alloca(alloc_size);
                 //modify
                 for (unsigned int j = 0; j< frm->width() * frm->height(); j++)
                 {
@@ -126,8 +127,8 @@ Animation::Animation(const std::string& frmName, unsigned int direction) : Fallt
         {
             for (auto i=0; i<4; i++)
             {
-                unsigned int mask[frm->width() * frm->height()];
-
+                const size_t alloc_size = frm->width() * frm->height() * sizeof(unsigned int);
+                unsigned int* mask = (unsigned int*)alloca(alloc_size);
                 //modify
                 for (unsigned int j = 0; j< frm->width() * frm->height(); j++)
                 {
@@ -144,8 +145,8 @@ Animation::Animation(const std::string& frmName, unsigned int direction) : Fallt
         {
             for (auto i=0; i<6; i++)
             {
-                unsigned int mask[frm->width() * frm->height()];
-
+                const size_t alloc_size = frm->width() * frm->height() * sizeof(unsigned int);
+                unsigned int* mask = (unsigned int*)alloca(alloc_size);
                 //modify
                 for (unsigned int j = 0; j< frm->width() * frm->height(); j++)
                 {
@@ -163,8 +164,8 @@ Animation::Animation(const std::string& frmName, unsigned int direction) : Fallt
         {
             for (auto i=0; i<5; i++)
             {
-                unsigned int mask[frm->width() * frm->height()];
-
+                const size_t alloc_size = frm->width() * frm->height() * sizeof(unsigned int);
+                unsigned int* mask = (unsigned int*)alloca(alloc_size);
                 //modify
                 for (unsigned int j = 0; j< frm->width() * frm->height(); j++)
                 {
@@ -182,7 +183,8 @@ Animation::Animation(const std::string& frmName, unsigned int direction) : Fallt
         {
             for (auto i=0; i<5; i++)
             {
-                unsigned int mask[frm->width() * frm->height()];
+                const size_t alloc_size = frm->width() * frm->height() * sizeof(unsigned int);
+                unsigned int* mask = (unsigned int*)alloca(alloc_size);
                 //modify
                 for (unsigned int j = 0; j< frm->width() * frm->height(); j++)
                 {
@@ -199,7 +201,8 @@ Animation::Animation(const std::string& frmName, unsigned int direction) : Fallt
         {
             for (auto i=0; i<16; i++)
             {
-                unsigned int mask[frm->width() * frm->height()];
+                const size_t alloc_size = frm->width() * frm->height() * sizeof(unsigned int);
+                unsigned int* mask = (unsigned int*)alloca(alloc_size);
                 //modify
                 for (unsigned int j = 0; j< frm->width() * frm->height(); j++)
                 {

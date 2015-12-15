@@ -18,6 +18,7 @@
  */
 
 // C++ standard includes
+#include <malloc.h>
 
 // Falltergeist includes
 #include "Base/StlFeatures.h"
@@ -39,7 +40,8 @@ Font::Font(const std::string& filename, unsigned int color)
     unsigned int width = _aaf->maximumWidth()*16u;
     unsigned int height = _aaf->maximumHeight()*16u;
 
-    unsigned int rgba[width * height];
+    const unsigned int alloc_size = width * height * sizeof(unsigned int);
+    unsigned int* rgba = (unsigned int*)alloca(alloc_size);
 
     for (unsigned int y = 0; y != height; y++)
     {

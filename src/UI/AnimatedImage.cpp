@@ -21,6 +21,7 @@
 #include "../UI/AnimatedImage.h"
 
 // C++ standard includes
+#include <malloc.h>
 
 // Falltergeist includes
 #include "../Base/StlFeatures.h"
@@ -56,7 +57,9 @@ AnimatedImage::AnimatedImage(libfalltergeist::Frm::File* frm, unsigned int direc
 
     if ((*masks)[MASK::MONITOR] != NULL)
     {
-        unsigned int mask[frm->width() * frm->height()];
+        const size_t alloc_size = frm->width() * frm->height() * sizeof(unsigned int);
+        unsigned int* mask = (unsigned int*)alloca(alloc_size);
+
         for (auto i = 0; i < 5; i++)
         {
             //modify
@@ -73,7 +76,8 @@ AnimatedImage::AnimatedImage(libfalltergeist::Frm::File* frm, unsigned int direc
 
     if ((*masks)[MASK::SLIME] != NULL)
     {
-        unsigned int mask[frm->width() * frm->height()];
+        const size_t alloc_size = frm->width() * frm->height() * sizeof(unsigned int);
+        unsigned int* mask = (unsigned int*)alloca(alloc_size);
 
         for (auto i = 0; i < 4; i++)
         {
@@ -91,7 +95,8 @@ AnimatedImage::AnimatedImage(libfalltergeist::Frm::File* frm, unsigned int direc
 
     if ((*masks)[MASK::SHORE] != NULL)
     {
-        unsigned int mask[frm->width() * frm->height()];
+        const size_t alloc_size = frm->width() * frm->height() * sizeof(unsigned int);
+        unsigned int* mask = (unsigned int*)alloca(alloc_size);
 
         for (auto i = 0; i < 6; i++)
         {
@@ -110,7 +115,8 @@ AnimatedImage::AnimatedImage(libfalltergeist::Frm::File* frm, unsigned int direc
 
     if ((*masks)[MASK::FIRE_SLOW] != NULL)
     {
-        unsigned int mask[frm->width() * frm->height()];
+        const size_t alloc_size = frm->width() * frm->height() * sizeof(unsigned int);
+        unsigned int* mask = (unsigned int*)alloca(alloc_size);
 
         for (auto i = 0; i < 5; i++)
         {
@@ -129,7 +135,8 @@ AnimatedImage::AnimatedImage(libfalltergeist::Frm::File* frm, unsigned int direc
 
     if ((*masks)[MASK::FIRE_FAST] != NULL)
     {
-        unsigned int mask[frm->width() * frm->height()];
+        const size_t alloc_size = frm->width() * frm->height() * sizeof(unsigned int);
+        unsigned int* mask = (unsigned int*)alloca(alloc_size);
 
         for (auto i = 0; i < 5; i++)
         {
@@ -148,7 +155,8 @@ AnimatedImage::AnimatedImage(libfalltergeist::Frm::File* frm, unsigned int direc
 
     if ((*masks)[MASK::REDDOT] != NULL)
     {
-        unsigned int mask[frm->width() * frm->height()];
+        const size_t alloc_size = frm->width() * frm->height() * sizeof(unsigned int);
+        unsigned int* mask = (unsigned int*)alloca(alloc_size);
 
         for (auto i = 0; i < 16; i++)
         {

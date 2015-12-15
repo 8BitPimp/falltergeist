@@ -22,6 +22,7 @@
 
 // C++ standard includes
 #include <string>
+#include <malloc.h>
 
 // Falltergeist includes
 #include "../Exception.h"
@@ -113,7 +114,8 @@ void Mixer::_musicCallback(void *udata, uint8_t *stream, uint32_t len)
     else
     {
         //all other files are mono. double it
-        uint16_t tmp[len/2];
+        const size_t alloc_size = len * sizeof(uint16_t) / 2;
+        uint16_t* tmp = (uint16_t*)alloca(alloc_size);
         uint16_t* sstr = (uint16_t*)stream;
         pacm->readSamples((short int*)tmp, len/4);
         for (uint32_t i = 0; i < len/4; i++)
@@ -173,7 +175,8 @@ void Mixer::playACMSound(const std::string& filename)
         acm->init();
         auto samples = acm->samples();
 
-        uint8_t memory[samples * 2];
+        const size_t alloc_size = samples * 2 * sizeof(uint8_t);
+        uint8_t* memory = (uint8_t*)alloca(alloc_size);
         auto cnt = acm->readSamples((short*)memory, samples)*2;
 
         SDL_AudioCVT cvt;
